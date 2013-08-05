@@ -16,6 +16,10 @@ this.addAnim('walk', 0.1, "0-5");
 this.addAnim('walk', 0.1, [5,4,3,2,1,0]);
 this.addAnim('walk', 0.1, "5-0");
 
+// You can chain ranges like this:
+this.addAnim('walk', 0.1, [0,1,2,3,4,5,4,3,2,1]);
+this.addAnim('walk', 0.1, "0-5-1");
+
 // Seperate using commas for complex sequences:
 this.addAnim('walk', 0.1, [1,2,3,4,5,0,5,4,3,2]);
 this.addAnim('walk', 0.1, "1-5,0,5-2");
