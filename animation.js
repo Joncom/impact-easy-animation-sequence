@@ -23,17 +23,27 @@ ig.module('plugins.joncom.easy-animation-sequence.animation')
                     var frame = parseInt(chunk, 10);
                     sequence.push(frame);
                 } else {
-                    var a = parseInt(chunk.substring(0, index), 10);
-                    var b = parseInt(chunk.substr(index + 1), 10);
-                    if(a < b) {
-                        for (var frame = a; frame <= b; frame++) {
-                            sequence.push(frame);
-                        }
-                    } else {
-                        for (var frame = a; frame >= b; frame--) {
-                            sequence.push(frame);
+                    var ranges = chunk.split("-");
+                    for(var r=0; r<(ranges.length-1); r++) {
+                        var a = parseInt(ranges[r], 10);
+                        var b = parseInt(ranges[r+1], 10);
+                        if(a < b) {
+                            for (var frame = a; frame <= b; frame++) {
+                                if(frame === a && r !== 0) {
+                                    continue;
+                                }
+                                sequence.push(frame);
+                            }
+                        } else {
+                            for (var frame = a; frame >= b; frame--) {
+                                if(frame === a && r !== 0) {
+                                    continue;
+                                }
+                                sequence.push(frame);
+                            }
                         }
                     }
+
                 }
             }
             return sequence;
