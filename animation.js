@@ -23,8 +23,8 @@ ig.module('plugins.joncom.easy-animation-sequence.animation')
                     var frame = parseInt(part, 10);
                     sequence.push(frame);
                 } else {
-                    var a = parseInt(string.substring(0, index), 10);
-                    var b = parseInt(string.substr(index + 1), 10);
+                    var a = parseInt(part.substring(0, index), 10);
+                    var b = parseInt(part.substr(index + 1), 10);
                     if(a < b) {
                         for (var frame = a; frame <= b; frame++) {
                             sequence.push(frame);
