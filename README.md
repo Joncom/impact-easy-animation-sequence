@@ -13,8 +13,8 @@ this.addAnim('walk', 0.1, [0,1,2,3,4,5]);
 this.addAnim('walk', 0.1, "0-5");
 
 // Reverse order works too:
-this.addAnim('walk', 0.1, [5,4,3,2,1]);
-this.addAnim('walk', 0.1, "5-1");
+this.addAnim('walk', 0.1, [5,4,3,2,1,0]);
+this.addAnim('walk', 0.1, "5-0");
 
 // Seperate using commas for complex sequences:
 this.addAnim('walk', 0.1, [1,2,3,4,5,0,5,4,3,2]);
