@@ -22,9 +22,10 @@ ig.module('plugins.joncom.easy-animation-sequence.animation')
                     sequence.push(frame);
                 } else {
                     var ranges = chunk.split("-");
+                    ranges = this._parseIntegersInArray(ranges);
                     for(var r=0; r<(ranges.length-1); r++) {
-                        var a = parseInt(ranges[r], 10);
-                        var b = parseInt(ranges[r+1], 10);
+                        var a = ranges[r];
+                        var b = ranges[r+1];
                         if(a < b) {
                             for (var frame = a; frame <= b; frame++) {
                                 if(frame === a && r !== 0) {
@@ -45,6 +46,13 @@ ig.module('plugins.joncom.easy-animation-sequence.animation')
                 }
             }
             return sequence;
+        },
+
+        _parseIntegersInArray: function(array) {
+            for(var i=0; i<array.length; i++) {
+                array[i] = parseInt(array[i], 10);
+            }
+            return array;
         }
 
     });
