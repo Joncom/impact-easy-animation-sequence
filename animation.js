@@ -30,7 +30,7 @@ ig.module('plugins.joncom.easy-animation-sequence.animation')
                             sequence.push(frame);
                         }
                     } else {
-                        for (var frame = b; frame >= a; frame--) {
+                        for (var frame = a; frame >= b; frame--) {
                             sequence.push(frame);
                         }
                     }
