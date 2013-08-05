@@ -11,8 +11,6 @@ ig.module('plugins.joncom.easy-animation-sequence.animation')
             this.parent(sheet, frameTime, sequence, stop);
         },
 
-        // AUTHOR: dmen
-        // URL: http://impactjs.com/forums/impact-engine/little-update-to-addanim/page/1
         _convertSequenceStringToArray: function(string) {
             var sequence = [];
             var chunks = string.split(",");
