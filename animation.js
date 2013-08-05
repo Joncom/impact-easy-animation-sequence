@@ -26,6 +26,7 @@ ig.module('plugins.joncom.easy-animation-sequence.animation')
             var sequence = [];
             var index = chunk.indexOf("-");
             if(index === -1) {
+                // Not a range, just a single number.
                 var frame = parseInt(chunk, 10);
                 sequence.push(frame);
             } else {
@@ -35,6 +36,7 @@ ig.module('plugins.joncom.easy-animation-sequence.animation')
                     var a = ranges[i];
                     var b = ranges[i+1];
                     if(i !== 0) {
+                        // Prevent duplication of numbers between limits.
                         a += (a < b ? 1 : -1);
                     }
                     var array = this._createArrayOfIntegersFromRange(a, b);
@@ -49,6 +51,7 @@ ig.module('plugins.joncom.easy-animation-sequence.animation')
             var integer = a;
             var running = true;
             while(running) {
+                // Have we past the end of the range?
                 if( (a < b && integer > b) || (a > b && integer < b) ) {
                     running = false;
                     continue;
