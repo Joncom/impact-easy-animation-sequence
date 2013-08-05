@@ -23,10 +23,10 @@ ig.module('plugins.joncom.easy-animation-sequence.animation')
                     var frame = parseInt(part, 10);
                     sequence.push(frame);
                 } else {
-                    var startRange = parseInt(string.substring(0, index), 10);
-                    var endRange = parseInt(string.substr(index + 1), 10);
-                    if(startRange < endRange) {
-                        for (var j = startRange; j <= endRange; j++) {
+                    var lower = parseInt(string.substring(0, index), 10);
+                    var upper = parseInt(string.substr(index + 1), 10);
+                    if(lower < upper) {
+                        for (var j = lower; j <= upper; j++) {
                             sequence.push(j);
                         }
                     } else {
