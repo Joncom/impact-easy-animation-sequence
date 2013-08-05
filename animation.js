@@ -34,23 +34,29 @@ ig.module('plugins.joncom.easy-animation-sequence.animation')
                 for(var r=0; r<(ranges.length-1); r++) {
                     var a = ranges[r];
                     var b = ranges[r+1];
-                    var frame = a;
-                    var running = true;
-                    while(running) {
-                        if(frame === a && r !== 0) {
-                            frame += (a < b ? 1 : -1);
-                            continue;
-                        }
-                        if( (a < b && frame > b) || (a > b && frame < b) ) {
-                            running = false;
-                            continue;
-                        }
-                        sequence.push(frame);
-                        frame += (a < b ? 1 : -1);
+                    if(r !== 0) {
+                        a += (a < b ? 1 : -1);
                     }
+                    var array = this._createArrayOfIntegersFromRange(a, b);
+                    sequence = sequence.concat(array);
                 }
             }
             return sequence;
+        },
+
+        _createArrayOfIntegersFromRange: function(a, b) {
+            var array = [];
+            var integer = a;
+            var running = true;
+            while(running) {
+                if( (a < b && integer > b) || (a > b && integer < b) ) {
+                    running = false;
+                    continue;
+                }
+                array.push(integer);
+                integer += (a < b ? 1 : -1);
+            }
+            return array;
         },
 
         _parseIntegersInArray: function(array) {
