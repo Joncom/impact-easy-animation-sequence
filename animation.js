@@ -14,14 +14,14 @@ ig.module('plugins.joncom.easy-animation-sequence.animation')
         // AUTHOR: dmen
         // URL: http://impactjs.com/forums/impact-engine/little-update-to-addanim/page/1
         _convertSequenceStringToArray: function(string) {
-            var seq = [];
+            var sequence = [];
             var p = string.indexOf("-");
             var startRange = parseInt(string.substring(0, p), 10);
             var endRange = parseInt(string.substr(p + 1), 10);
             for (var i = startRange; i <= endRange; i++) {
-                seq.push(i);
+                sequence.push(i);
             }
-            return seq;
+            return sequence;
         }
 
     });
