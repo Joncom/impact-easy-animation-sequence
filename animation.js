@@ -31,10 +31,10 @@ ig.module('plugins.joncom.easy-animation-sequence.animation')
             } else {
                 var ranges = chunk.split("-");
                 ranges = this._parseIntegersInArray(ranges);
-                for(var r=0; r<(ranges.length-1); r++) {
-                    var a = ranges[r];
-                    var b = ranges[r+1];
-                    if(r !== 0) {
+                for(var i=0; i<(ranges.length-1); i++) {
+                    var a = ranges[i];
+                    var b = ranges[i+1];
+                    if(i !== 0) {
                         a += (a < b ? 1 : -1);
                     }
                     var array = this._createArrayOfIntegersFromRange(a, b);
