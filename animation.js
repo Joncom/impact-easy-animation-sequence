@@ -34,20 +34,19 @@ ig.module('plugins.joncom.easy-animation-sequence.animation')
                 for(var r=0; r<(ranges.length-1); r++) {
                     var a = ranges[r];
                     var b = ranges[r+1];
-                    if(a < b) {
-                        for (var frame = a; frame <= b; frame++) {
-                            if(frame === a && r !== 0) {
-                                continue;
-                            }
-                            sequence.push(frame);
+                    var frame = a;
+                    var running = true;
+                    while(running) {
+                        if(frame === a && r !== 0) {
+                            frame += (a < b ? 1 : -1);
+                            continue;
                         }
-                    } else {
-                        for (var frame = a; frame >= b; frame--) {
-                            if(frame === a && r !== 0) {
-                                continue;
-                            }
-                            sequence.push(frame);
+                        if( (a < b && frame > b) || (a > b && frame < b) ) {
+                            running = false;
+                            continue;
                         }
+                        sequence.push(frame);
+                        frame += (a < b ? 1 : -1);
                     }
                 }
             }
