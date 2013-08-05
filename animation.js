@@ -6,23 +6,23 @@ ig.module('plugins.joncom.easy-animation-sequence.animation')
 
         init: function(sheet, frameTime, sequence, stop) {
             if (typeof(sequence) == "string") {
-                sequence = this._buildSequenceFromString(sequence);
+                sequence = this._createArrayOfIntegersFromString(sequence);
             }
             this.parent(sheet, frameTime, sequence, stop);
         },
 
-        _buildSequenceFromString: function(string) {
+        _createArrayOfIntegersFromString: function(string) {
             var sequence = [];
             var chunks = string.split(",");
             for(var i=0; i<chunks.length; i++) {
                 var chunk = chunks[i];
-                var subsequence = this._createSequenceArrayFromChunk(chunk);
+                var subsequence = this._createArrayOfIntegersFromStringChunk(chunk);
                 sequence = sequence.concat(subsequence);
             }
             return sequence;
         },
 
-        _createSequenceArrayFromChunk: function(chunk) {
+        _createArrayOfIntegersFromStringChunk: function(chunk) {
             var sequence = [];
             var index = chunk.indexOf("-");
             if(index === -1) {
