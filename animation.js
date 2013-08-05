@@ -15,11 +15,26 @@ ig.module('plugins.joncom.easy-animation-sequence.animation')
         // URL: http://impactjs.com/forums/impact-engine/little-update-to-addanim/page/1
         _convertSequenceStringToArray: function(string) {
             var sequence = [];
-            var p = string.indexOf("-");
-            var startRange = parseInt(string.substring(0, p), 10);
-            var endRange = parseInt(string.substr(p + 1), 10);
-            for (var i = startRange; i <= endRange; i++) {
-                sequence.push(i);
+            var parts = string.split(",");
+            for(var i=0; i<parts.length; i++) {
+                var part = parts[i];
+                var index = part.indexOf("-");
+                if(index === -1) {
+                    var frame = parseInt(part, 10);
+                    sequence.push(frame);
+                } else {
+                    var startRange = parseInt(string.substring(0, index), 10);
+                    var endRange = parseInt(string.substr(index + 1), 10);
+                    if(startRange < endRange) {
+                        for (var j = startRange; j <= endRange; j++) {
+                            sequence.push(j);
+                        }
+                    } else {
+                        for (var j = end; j >= start; j--) {
+                            sequence.push(j);
+                        }
+                    }
+                }
             }
             return sequence;
         }
