@@ -16,33 +16,39 @@ ig.module('plugins.joncom.easy-animation-sequence.animation')
             var chunks = string.split(",");
             for(var i=0; i<chunks.length; i++) {
                 var chunk = chunks[i];
-                var index = chunk.indexOf("-");
-                if(index === -1) {
-                    var frame = parseInt(chunk, 10);
-                    sequence.push(frame);
-                } else {
-                    var ranges = chunk.split("-");
-                    ranges = this._parseIntegersInArray(ranges);
-                    for(var r=0; r<(ranges.length-1); r++) {
-                        var a = ranges[r];
-                        var b = ranges[r+1];
-                        if(a < b) {
-                            for (var frame = a; frame <= b; frame++) {
-                                if(frame === a && r !== 0) {
-                                    continue;
-                                }
-                                sequence.push(frame);
+                var subsequence = this._createSequenceArrayFromChunk(chunk);
+                sequence = sequence.concat(subsequence);
+            }
+            return sequence;
+        },
+
+        _createSequenceArrayFromChunk: function(chunk) {
+            var sequence = [];
+            var index = chunk.indexOf("-");
+            if(index === -1) {
+                var frame = parseInt(chunk, 10);
+                sequence.push(frame);
+            } else {
+                var ranges = chunk.split("-");
+                ranges = this._parseIntegersInArray(ranges);
+                for(var r=0; r<(ranges.length-1); r++) {
+                    var a = ranges[r];
+                    var b = ranges[r+1];
+                    if(a < b) {
+                        for (var frame = a; frame <= b; frame++) {
+                            if(frame === a && r !== 0) {
+                                continue;
                             }
-                        } else {
-                            for (var frame = a; frame >= b; frame--) {
-                                if(frame === a && r !== 0) {
-                                    continue;
-                                }
-                                sequence.push(frame);
+                            sequence.push(frame);
+                        }
+                    } else {
+                        for (var frame = a; frame >= b; frame--) {
+                            if(frame === a && r !== 0) {
+                                continue;
                             }
+                            sequence.push(frame);
                         }
                     }
-
                 }
             }
             return sequence;
