@@ -23,15 +23,15 @@ ig.module('plugins.joncom.easy-animation-sequence.animation')
                     var frame = parseInt(part, 10);
                     sequence.push(frame);
                 } else {
-                    var lower = parseInt(string.substring(0, index), 10);
-                    var upper = parseInt(string.substr(index + 1), 10);
-                    if(lower < upper) {
-                        for (var j = lower; j <= upper; j++) {
-                            sequence.push(j);
+                    var a = parseInt(string.substring(0, index), 10);
+                    var b = parseInt(string.substr(index + 1), 10);
+                    if(a < b) {
+                        for (var frame = a; frame <= b; frame++) {
+                            sequence.push(frame);
                         }
                     } else {
-                        for (var j = upper; j >= lower; j--) {
-                            sequence.push(j);
+                        for (var frame = b; frame >= a; frame--) {
+                            sequence.push(frame);
                         }
                     }
                 }
