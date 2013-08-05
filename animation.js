@@ -6,12 +6,12 @@ ig.module('plugins.joncom.easy-animation-sequence.animation')
 
         init: function(sheet, frameTime, sequence, stop) {
             if (typeof(sequence) == "string") {
-                sequence = this._convertSequenceStringToArray(sequence);
+                sequence = this._buildSequenceFromString(sequence);
             }
             this.parent(sheet, frameTime, sequence, stop);
         },
 
-        _convertSequenceStringToArray: function(string) {
+        _buildSequenceFromString: function(string) {
             var sequence = [];
             var chunks = string.split(",");
             for(var i=0; i<chunks.length; i++) {
